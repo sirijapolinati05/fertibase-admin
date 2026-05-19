@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+    @apply bg-gray-50 text-gray-900;
+  }
+}
+
+.modal-input {
+  @apply w-full p-4 bg-slate-50 rounded-xl outline-none placeholder:text-slate-400 focus:bg-white focus:ring-2 focus:ring-blue-500;
+}
+
+.modal-textarea {
+  @apply w-full p-4 bg-slate-50 rounded-xl outline-none h-28 resize-none placeholder:text-slate-400 focus:bg-white focus:ring-2 focus:ring-blue-500;
+}
+
+
+/* src/index.css */
+@keyframes gradient-slow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-slow {
+  background-size: 300% 300%;
+  animation: gradient-slow 20s ease infinite;
+}

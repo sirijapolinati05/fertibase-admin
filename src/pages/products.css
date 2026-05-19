@@ -1,0 +1,42 @@
+/* .dynamic-card {
+  background: #f8fafc;
+  border-radius: 16px;
+  padding: 16px;
+  margin-top: 20px;
+}
+
+.dynamic-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.dynamic-header button {
+  border: none;
+  background: #e0e7ff;
+  border-radius: 8px;
+  padding: 6px;
+  cursor: pointer;
+}
+
+.dynamic-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.dynamic-row input {
+  flex: 1;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1.5px solid #000;
+  background: #fff;
+}
+
+.dynamic-row button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+} */
