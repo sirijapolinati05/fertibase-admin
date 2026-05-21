@@ -22,9 +22,14 @@ const safeParseArray = (value) => {
    GET ALL PRODUCTS
 ======================= */
 router.get("/", async (req, res) => {
+  const limit = parseInt(req.query.limit) || 20;
+  const offset = parseInt(req.query.offset) || 0;
+  const start = offset;
+  const end = offset + limit - 1;
   const { data, error } = await supabase
     .from("products")
-    .select("*");
+    .select("*")
+    .range(start, end);
 
   if (error) return res.status(500).json({ error: error.message });
   res.json(data || []);
