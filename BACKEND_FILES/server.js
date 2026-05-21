@@ -12,16 +12,17 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json()); // Crucial for reading form data
 
 app.use(cors({
-    origin: [
-        "http://localhost:5173",        // local admin
-        "http://localhost:5174",        // local admin (alternate port)
-        "https://admin.fertibase.in",   // deployed admin
-        "https://fertibase.in",
-        "https://admin-backend.fertibase.in",
-        "https://fertibase-admin.onrender.com"        // main site
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true
+  origin: [
+    "http://localhost:5173",
+    "http://localhost:5174",
+    "https://admin.fertibase.in",
+    "https://fertibase.in",
+    "https://admin-backend.fertibase.in",
+    "https://fertibase-admin.onrender.com",
+    "https://fertibase-admin-nine.vercel.app"
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
 }));
 
 app.use(express.json());
