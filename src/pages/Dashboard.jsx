@@ -27,7 +27,7 @@ export default function Dashboard() {
   const fetchData = async () => {
     try {
       const [pRes, tRes, jRes] = await Promise.all([
-        fetch(`${API_BASE}/products`),
+        fetch(`${API_BASE}/products?limit=1000`),
         fetch(`${API_BASE}/testimonials`),
         fetch(`${API_BASE}/jobs`),
       ]);

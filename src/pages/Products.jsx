@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Plus, X, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 import productService from "../services/productService";
 
 export default function Products() {
   const [modalOpen, setModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [products, setProducts] = useState([]);
+  const [loadingProducts, setLoadingProducts] = useState(false);
 
   const [successOpen, setSuccessOpen] = useState(false);
   const [errorOpen, setErrorOpen] = useState(false);
@@ -51,6 +53,27 @@ export default function Products() {
     setForm({ ...form, [field]: updated });
   };
 
+  const fetchProducts = async () => {
+    try {
+      setLoadingProducts(true);
+      const data = await productService.getProducts();
+      // Trim whitespace from category fields to avoid mismatches
+      const cleaned = data.map(p => ({
+        ...p,
+        category: (p.category || "").trim(),
+      }));
+      setProducts(cleaned);
+    } catch (err) {
+      console.error('Failed to fetch products', err);
+    } finally {
+      setLoadingProducts(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -67,6 +90,9 @@ export default function Products() {
       });
 
       await productService.addProduct(fd);
+
+      // Refresh product list
+      await fetchProducts();
 
       setModalOpen(false);
       setForm(emptyForm);
@@ -114,7 +140,20 @@ export default function Products() {
         <Plus size={18} /> Add Product
       </button>
 
-      {/* ================= MODAL ================= */}
+      {/* Product List */}
+      {loadingProducts ? (
+        <div className="flex justify-center py-8"><Loader2 className="animate-spin" size={24} /></div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+          {products.map((product) => (
+            <div key={product.id} className="p-4 border rounded shadow">
+              <h3 className="font-bold">{product.name}</h3>
+              <p>{product.category}</p>
+            </div>
+          ))}
+        </div>
+      )}
+
       {modalOpen && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-6">
           <form

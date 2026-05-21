@@ -231,8 +231,9 @@ export default function ProductManager() {
       .toLowerCase()
       .includes(search.toLowerCase());
 
-    const matchesCategory =
-      filterCategory === "All" || p.category === filterCategory;
+    const productCat = (p.category || "").toLowerCase();
+    const filterCat = (filterCategory || "").toLowerCase();
+    const matchesCategory = filterCategory === "All" || productCat === filterCat;
 
     return matchesSearch && matchesCategory;
   });
@@ -279,8 +280,8 @@ export default function ProductManager() {
           className="px-4 py-3 rounded-xl border w-full sm:w-1/4"
         >
           <option value="All">All Categories</option>
-          {[...new Set(products.map(p => p.category))].map((c) => (
-            <option key={c}>{c}</option>
+          {CATEGORIES.map((cat) => (
+            <option key={cat} value={cat}>{cat}</option>
           ))}
         </select>
       </div>
