@@ -57,26 +57,22 @@ export default function Products() {
     try {
       setLoadingProducts(true);
       const data = await productService.getProducts();
-      // Trim whitespace from category fields to avoid mismatches
       const cleaned = data.map(p => ({
         ...p,
         category: (p.category || "").trim(),
       }));
       setProducts(cleaned);
+      console.log('Fetched products:', cleaned);
     } catch (err) {
       console.error('Failed to fetch products', err);
     } finally {
       setLoadingProducts(false);
     }
   };
-
   useEffect(() => {
     fetchProducts();
   }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
 
     try {
       const fd = new FormData();
