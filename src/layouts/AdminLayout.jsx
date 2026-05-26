@@ -60,7 +60,6 @@ export default function AdminLayout() {
         onClick: () => setSignOutOpen(true),
         icon: LogOut,
       },
-      ,
     ]
     : [
       {

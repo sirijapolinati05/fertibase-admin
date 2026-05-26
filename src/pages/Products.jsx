@@ -73,6 +73,9 @@ export default function Products() {
     fetchProducts();
   }, []);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
 
     try {
       const fd = new FormData();
