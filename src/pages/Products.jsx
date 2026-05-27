@@ -72,8 +72,9 @@ export default function Products() {
   useEffect(() => {
     fetchProducts();
   }, []);
-
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
     try {
       const fd = new FormData();
 
@@ -101,6 +102,7 @@ export default function Products() {
       setLoading(false);
     }
   };
+
 
   const DynamicSection = ({ title, field, placeholder }) => (
     <div className="bg-slate-50 p-5 rounded-2xl space-y-3">
